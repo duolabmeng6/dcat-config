@@ -1,0 +1,32 @@
+{
+    "name": "ll/dcat-config",
+    "alias": "系统变量配置管理",
+    "description": "用于配置系统中各种的动态变量",
+    "type": "library",
+    "keywords": ["dcat-admin", "extension"],
+    "homepage": "https://github.com/duolabmeng6/dcat-config",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "多啦b梦",
+            "email": "1715109585@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "dcat/laravel-admin": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ll\\DcatConfig\\": "src/"
+        }
+    },
+    "extra": {
+        "dcat-admin": "Ll\\DcatConfig\\DcatConfigServiceProvider",
+        "laravel": {
+            "providers": [
+                "Ll\\DcatConfig\\DcatConfigServiceProvider"
+            ]
+        }
+    }
+}
