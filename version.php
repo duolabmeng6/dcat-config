@@ -2,10 +2,7 @@
 
 return [
     '1.0.0' => [
-        'Initialize extension.',
-    ],
-    '1.0.1' => [
-        'field type for config',
+        '创建数据库',
         'create_dconfig_table.php'
     ]
 ];
