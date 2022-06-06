@@ -30,7 +30,50 @@ class DcatConfigController extends AdminController
 
         $grid->id('ID')->sortable();
         $grid->column('name', '变量名')->editable();
-        $grid->column('value', '设置值')->width(240);
+
+        $grid->column('value','设置值')->display(function ($title, $column) {
+            $optArr = [];
+            if ($this->option) {
+                $options = explode("\r\n", $this->option);
+                foreach ($options as $option) {
+                    if (str_contains($option, '=')) {
+                        $opt             = explode("=", $option);
+                        $optArr[$opt[0]] = $opt[1];
+                    }
+                }
+            }
+            // 如果这一列的status字段的值等于1，直接显示title字段
+            if ($this->type == 0) {
+                return $column->editable();
+            }
+            if ($this->type == 1) {
+                return $column->switch();
+            }
+            if ($this->type == 2 or $this->type == 4) {
+                return $column->radio($optArr);
+            }
+            if ($this->type == 3 or $this->type == 5) {
+                return $column->checkbox($optArr);
+            }
+            if ($this->type == 5) {
+                return $column->checkbox($optArr);
+            }
+            if ($this->type == 7) {
+//                return $column->editable('time');
+            }
+            if ($this->type == 8) {
+//                return $column->editable('date');
+            }
+            if ($this->type == 9) {
+//                return $column->editable('datetime');
+            }
+            // 否则显示为editable
+            return $column->editable();
+        });
+
+        $grid->column('变量值')->display(function ($title, $column) {
+            return $this->value;
+        });
         $grid->column('description', '说明')->editable();
         $grid->disableViewButton();
         $grid->enableDialogCreate();

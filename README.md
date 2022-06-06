@@ -1,8 +1,12 @@
 # 系统变量配置管理 Dcat Admin Extension
 
-用于配置系统中各种的动态变量
+用于配置系统中各种的动态变量 设置值列为可编辑列 变量值为 config("变量名") 的值
 
-![image-20220605023743106](images/README/image-20220605023743106.png)
+![image-20220606153442146](images/README/image-20220606153442146.png)
+
+
+
+!(images/README/image-20220605023743106.png)
 ![image-20220605023851837](images/README/image-20220605023851837.png)
 
 # 安装
