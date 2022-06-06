@@ -4,9 +4,6 @@
 
 ![image-20220606153442146](images/README/image-20220606153442146.png)
 
-
-
-!(images/README/image-20220605023743106.png)
 ![image-20220605023851837](images/README/image-20220605023851837.png)
 
 # 安装
