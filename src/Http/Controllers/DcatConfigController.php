@@ -64,7 +64,7 @@ class DcatConfigController extends AdminController
                 return $column->checkbox($optArr);
             }
             if ($this->type == 6) {
-                return $column->textarea();
+                return $column->textarea()->width(200);
 //                return $column->textarea()->display(function($v){
 //                    return Str::limit($v,10);
 //                });
@@ -83,6 +83,10 @@ class DcatConfigController extends AdminController
         });
 
         $grid->column('变量值')->display(function ($title, $column) {
+            if ($this->type == 6) {
+                return Str::limit($this->value, 10);
+            }
+
             return $this->value;
         });
         $grid->column('description', '说明')->editable();
