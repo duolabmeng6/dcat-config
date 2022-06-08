@@ -7,6 +7,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Http\Controllers\AdminController;
 use Ll\DcatConfig\Models\LlConfig;
+use Str;
 
 class DcatConfigController extends AdminController
 {
@@ -22,6 +23,7 @@ class DcatConfigController extends AdminController
             ->description('config("变量名") 获取变量名对应的值')
             ->body($this->grid());
     }
+
     protected function grid()
     {
         $grid = new Grid(new LlConfig());
@@ -31,7 +33,7 @@ class DcatConfigController extends AdminController
         $grid->id('ID')->sortable();
         $grid->column('name', '变量名')->editable();
 
-        $grid->column('value','设置值')->display(function ($title, $column) {
+        $grid->column('value', '设置值')->display(function ($title, $column) {
             $optArr = [];
             if ($this->option) {
                 $options = explode("\r\n", $this->option);
@@ -49,7 +51,10 @@ class DcatConfigController extends AdminController
             if ($this->type == 1) {
                 return $column->switch();
             }
-            if ($this->type == 2 or $this->type == 4) {
+            if ($this->type == 2) {
+                return $column->select($optArr);
+            }
+            if ($this->type == 4) {
                 return $column->radio($optArr);
             }
             if ($this->type == 3 or $this->type == 5) {
@@ -57,6 +62,12 @@ class DcatConfigController extends AdminController
             }
             if ($this->type == 5) {
                 return $column->checkbox($optArr);
+            }
+            if ($this->type == 6) {
+                return $column->textarea();
+//                return $column->textarea()->display(function($v){
+//                    return Str::limit($v,10);
+//                });
             }
             if ($this->type == 7) {
 //                return $column->editable('time');
